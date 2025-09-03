@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { getQueryClient ,trpc } from "@/trpc/server"
 import { dehydrate,HydrationBoundary} from "@tanstack/react-query"
 import { queryOptions } from "@tanstack/react-query"
@@ -17,3 +18,15 @@ const Page =  async () => {
 }
 
 export default Page
+=======
+import React from 'react';
+
+const Page = () => {
+  return (
+    <div>Hello</div>
+
+  );
+}
+
+export default Page;
+>>>>>>> 1881ef88225ed82b5c584f1152c85625c9c971e9

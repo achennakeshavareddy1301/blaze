@@ -39,7 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
 >>>>>>> Stashed changes
+=======
+
+/src/generated/prisma
+>>>>>>> 1881ef88225ed82b5c584f1152c85625c9c971e9
