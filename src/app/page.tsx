@@ -1,32 +1,36 @@
-<<<<<<< HEAD
-import { getQueryClient ,trpc } from "@/trpc/server"
-import { dehydrate,HydrationBoundary} from "@tanstack/react-query"
-import { queryOptions } from "@tanstack/react-query"
-import { Client } from "@/app/Client"
-import { Suspense } from "react"
-const Page =  async () => {
-  const queryClient = getQueryClient()
-  void queryClient.prefetchQuery(trpc.createai.queryOptions({text: "Hello"}));
+"use client";
+import { useTRPC } from "@/trpc/routers/client";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+
+export default function Page() {
+  const trpc = useTRPC();
+  const [value, setValue] = useState("");
+
+  const router = useRouter();
+
+  const createProject = useMutation(
+    trpc.projects.create.mutationOptions({
+      onSuccess: (data) => {
+        toast.success("message created!");
+        router.push(`/projects/${data.id}`);
+      },
+    })
+  );
+
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Client/>
-      </Suspense>
-    </HydrationBoundary>
-
-  )
-}
-
-export default Page
-=======
-import React from 'react';
-
-const Page = () => {
-  return (
-    <div>Hello</div>
-
+    <div className="p-4 max-w-7xl mx-auto">
+      <Input value={value} onChange={(e) => setValue(e.target.value)} />
+      <Button
+        disabled={createProject.isPending}
+        onClick={() => createProject.mutate({ value })}
+      >
+        submit
+      </Button>
+    </div>
   );
 }
-
-export default Page;
->>>>>>> 1881ef88225ed82b5c584f1152c85625c9c971e9

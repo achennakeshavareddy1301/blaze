@@ -11,16 +11,45 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model User {
-  id    Int     @id @default(autoincrement())
-  name  String?
-  posts Post[]
-}
-model Post {
-  id        Int     @id @default(autoincrement())
+model Project{
+  id String @id @default(uuid())
+  name String
+  description String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  messages Message[]
 
-  content   String?
-  published Boolean @default(false)
-  authorId  Int
-  author    User    @relation(fields: [authorId], references: [id])
+}
+enum MessageRole {
+  USER
+  ASSISTANT
+}
+enum MessageType{
+  RESULT
+  ERROR
+
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  role      MessageRole
+  type      MessageType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  projectId String
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  fragment  Fragment?
+
+}
+model Fragment {
+  id        String   @id @default(cuid())
+  content   String
+  messageId String   @unique
+  message   Message  @relation(fields: [messageId], references: [id])
+  sandboxUrl String
+  title     String
+  files     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

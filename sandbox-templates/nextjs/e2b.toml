@@ -1,0 +1,18 @@
+# This is a config for E2B sandbox template.
+# You can use template ID (6skriu7y3e5pml2wil8n) or template name (blaze-nextjs-test-2) to create a sandbox:
+
+# Python SDK
+# from e2b import Sandbox, AsyncSandbox
+# sandbox = Sandbox("blaze-nextjs-test-2") # Sync sandbox
+# sandbox = await AsyncSandbox.create("blaze-nextjs-test-2") # Async sandbox
+
+# JS SDK
+# import { Sandbox } from 'e2b'cs --
+
+# const sandbox = await Sandbox.create('blaze-nextjs-test-2')
+
+team_id = "1555d5f4-d202-4610-a956-f09fc47c17ba"
+start_cmd = "/compile_page.sh"
+dockerfile = "e2b.Dockerfile"
+template_name = "blaze-nextjs-test-2"
+template_id = "6skriu7y3e5pml2wil8n"
