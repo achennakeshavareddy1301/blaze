@@ -15,6 +15,7 @@ datasource db {
 
 model Project {
   id          String    @id @default(uuid())
+  userId      String
   name        String
   description String
   createdAt   DateTime  @default(now())
@@ -46,6 +47,7 @@ model Message {
 
 model Fragment {
   id         String   @id @default(cuid())
+  content    String
   messageId  String   @unique
   message    Message  @relation(fields: [messageId], references: [id])
   sandboxUrl String

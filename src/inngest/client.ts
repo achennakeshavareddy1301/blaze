@@ -4,7 +4,7 @@ import { Inngest } from "inngest";
 // For server-side usage, we need to ensure proper initialization
 export const inngest = new Inngest({ 
   id: "blaze-dev",
-  // Add any additional configuration needed for your environment
+  eventKey: process.env.INNGEST_EVENT_KEY, // Add the event key from the environment variables
 });
 
 // Ensure the client is properly initialized

@@ -1,22 +1,24 @@
 "use client"
-import { Tooltip, TooltipContent, TooltipTrigger,TooltipProvider } from "@/components/ui/tooltip";
-interface HintPorps {
-    childern: React.ReactNode;
-    hint: string;
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
+
+interface HintProps {
+    children: React.ReactNode;
     side?: "top" | "bottom" | "left" | "right";
     align?: "start" | "center" | "end";
-};
-export const Hint = ({childern,hint,side="top",align="center"}:HintPorps) => {
-    return(
+    hint?: string; // Optional hint prop for future use
+}
+
+export const Hint = ({ children, side = "top", align = "center" }: HintProps) => {
+    return (
         <TooltipProvider>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    {childern}
+                    {children}
                 </TooltipTrigger>
-                <TooltipContent side={side} align={align} >
+                <TooltipContent side={side} align={align}>
                     <p>text</p>
-                </TooltipContent>                    
+                </TooltipContent>
             </Tooltip>
-        </TooltipProvider>         
-    )
+        </TooltipProvider>
+    );
 };

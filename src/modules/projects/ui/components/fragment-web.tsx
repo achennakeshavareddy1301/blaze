@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ExternalLinkIcon, RefreshCcwIcon } from "lucide-react";
 import { useState } from "react";
 import React from "react";
-import { Hint } from "@/components/hint";
 interface Props {
     data: Fragment;
 };

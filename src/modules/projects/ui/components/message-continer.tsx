@@ -7,7 +7,6 @@ import { FC, useRef } from "react";
 import { MessageCard } from "./message-card";
 import { MessageForm } from "./message-form";
 import { useEffect } from "react";
-import { lastAssistantMessage } from "@/inngest/utils";
 import { Fragment } from "@/generated/prisma";
 import { MessageLoading } from "./message-loading";
 interface Props {
@@ -29,10 +28,21 @@ type Message = {
 export const MessageContainer: FC<Props> = ({ projectId, setActiveFragment, activeFragment }) => {
   const trpc = useTRPC();
   const bottomRef = useRef<HTMLDivElement>(null);
+  const lastAssistantMessageRef = useRef<string | null>(null);
 
   const { data: messages } = useSuspenseQuery(
     trpc.messages.getMany.queryOptions({ projectId }, { refetchInterval: 5000 })
   );
+  useEffect(() => {
+    const lastAssistantMessage=messages.findLast(
+      (message) => message.role === "ASSISTANT"
+    )
+    if (lastAssistantMessage?.fragment && lastAssistantMessage.id !== lastAssistantMessageRef.current) {
+      setActiveFragment(lastAssistantMessage.fragment);
+      lastAssistantMessageRef.current = lastAssistantMessage.id;
+    }
+  }, [messages, setActiveFragment]);
+
 
   const lastMessage = messages[messages.length - 1];
   const isLastMessagerUser = lastMessage?.role === "USER";
@@ -46,13 +56,13 @@ export const MessageContainer: FC<Props> = ({ projectId, setActiveFragment, acti
               {messages.map((message: Message) => (
                 <MessageCard
                   key={message.id}
-                  role={message.role as any}
+                  role={message.role as string}
                   content={message.content}
                   fragment={message.fragment} // <- pass Fragment object (or null)
                   createdAt={message.createdAt ? new Date(message.createdAt) : new Date()}
                   isActiveFragment={activeFragment?.id === message.fragment?.id}
                   onFragmentClick={() => setActiveFragment(message.fragment ?? null)} // <- pass object
-                  type={message.type as any}
+                  type={message.type as string}
                 />
               ))}
               {isLastMessagerUser && <MessageLoading />}
