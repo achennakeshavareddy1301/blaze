@@ -1,120 +1,188 @@
+
 # Blaze 🔥
 
-Blaze is an AI-powered code generation platform built with Next.js, Shadcn UI, and Prisma. It enables users to instantly transform creative ideas into production-ready code, featuring a modern dashboard, project management, and real-time code preview.
+> **AI-powered code generation platform** that transforms creative ideas into production-ready code instantly.
+
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748)](https://www.prisma.io/)
+[![tRPC](https://img.shields.io/badge/tRPC-type%20safe-2596be)](https://trpc.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+Blaze is a modern full-stack app built with Next.js, Shadcn UI, and Prisma. Instantly turn natural language prompts into high-quality, production-ready code with a sleek dashboard, project management, and real-time code preview.
 
 ---
 
-## Screenshots
+## ✨ Features
+
+- 🤖 **AI Code Generator** — Generate production-ready code from prompts
+- 📁 **Project Management** — Create, organize, and edit multiple projects
+- 👀 **Real-Time Code Preview** — Live UI and code updates
+- 🔐 **Authentication & Profiles** — Secure auth and profiles via Clerk
+- 🏗️ **Modular Architecture** — Feature-based modules for scale
+- 🛡️ **Type-Safe API** — End-to-end type safety with tRPC
+- ⚙️ **Background Jobs** — Reliable async processing with Inngest
+- 🪣 **Code Sandbox** — Secure execution via E2B
+
+---
+
+## 🖼️ Screenshots
 
 | Dashboard | Project View |
-| :---: | :---: |
-| <img width="1900" alt="Dashboard" src="https://github.com/user-attachments/assets/a299e86c-bec9-47b2-bc8f-f1cd49c835f3" /> | <img width="1900" alt="Project View" src="https://github.com/user-attachments/assets/3724780f-9c71-4740-b9ed-562e01f332a6" /> |
-<img width="1498" height="929" alt="Screenshot 2025-09-07 230810" src="https://github.com/user-attachments/assets/151ec1b4-c3eb-4c4e-8c28-ceabed755e70" />
+|:---:|:---:|
+| ![Dashboard](https://github.com/user-attachments/assets/a299e86c-bec9-47b2-bc8f-f1cd49c835f3) | ![Project View](https://github.com/user-attachments/assets/3724780f-9c71-4740-b9ed-562e01f332a6) |
 
-<img width="1592" height="709" alt="Screenshot 2025-09-07 230410" src="https://github.com/user-attachments/assets/5515dd74-7b30-4c04-aaef-1671fa2c6a79" />
+**Code Generation Interface**  
+![Code Generation](https://github.com/user-attachments/assets/151ec1b4-c3eb-4c4e-8c28-ceabed755e70)
 
----
+**Real-time Preview**  
+![Preview Mode](https://github.com/user-attachments/assets/5515dd74-7b30-4c04-aaef-1671fa2c6a79)
 
-## Features
 
--   **AI Code Generator**: Instantly generates production-ready code from user prompts.
--   **Project Management**: Organize, create, and edit multiple projects with intuitive controls.
--   **Real-Time Code Preview**: View live updates of generated code and UI components.
--   **Authentication & User Profiles**: Secure login and personalized user profiles powered by Clerk.
--   **Modular Architecture**: Code is organized into feature modules for scalability and maintainability.
--   **Type-Safe API**: End-to-end typesafe APIs with tRPC.
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
--   **Framework**: [Next.js](https://nextjs.org/)
--   **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [Shadcn UI](https://ui.shadcn.com/)
--   **Database**: [Prisma](https://www.prisma.io/) ORM with PostgreSQL
--   **API**: [tRPC](https://trpc.io/)
--   **Authentication**: [Clerk](https://clerk.com/)
--   **Background Jobs**: [Inngest](https://www.inngest.com/)
--   **Code Execution Sandbox**: [E2B](https://e2b.dev/)
+- **Frontend:** Next.js 14, TypeScript, Tailwind CSS, Shadcn/ui
+- **Backend:** tRPC, Prisma ORM, PostgreSQL
+- **Authentication:** Clerk
+- **Background Jobs:** Inngest
+- **Code Execution:** E2B
 
 ---
 
-## Getting Started
-
-Follow these instructions to set up and run the project locally.
+## 🚀 Quick Start
 
 ### Prerequisites
 
--   Node.js (v18 or newer)
--   npm
--   A PostgreSQL database
+- Node.js 18+
+- npm or yarn
+- PostgreSQL database
 
 ### Installation
 
-1.  **Clone the repository:**
-    ```sh
+1. **Clone the repository:**
+    ```
     git clone https://github.com/your-username/blaze.git
     cd blaze
     ```
 
-2.  **Install dependencies:**
-    ```sh
+2. **Install dependencies:**
+    ```
     npm install
     ```
 
-3.  **Set up environment variables:**
-    Create a `.env` file in the root of the project and add the following variables. You can get the Clerk keys from your Clerk dashboard.
-
-    ```env
-    # Prisma
+3. **Configure environment variables:**  
+   Create a `.env` file in the root:
+    ```
+    # Database
     DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
 
-    # Clerk
+    # Clerk Authentication
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
     CLERK_SECRET_KEY=your_clerk_secret_key
+
+    # (Optional) AI & External Services
+    OPENAI_API_KEY=your_openai_key
+    E2B_API_KEY=your_e2b_key
     ```
 
-4.  **Push the database schema:**
-    This command will sync your Prisma schema with your database.
-    ```sh
+4. **Initialize the database:**
+    ```
     npx prisma db push
     ```
 
-5.  **Run the development server:**
-    ```sh
+5. **Start the development server:**
+    ```
     npm run dev
     ```
-
-The application will be available at `http://localhost:3000`.
-
----
-
-## Folder Structure
-
-The project follows a modular architecture, with key directories organized as follows:
-
--   `src/app/`: Contains all routes, pages, and layouts for the Next.js App Router.
--   `src/components/`: Shared, reusable components, including UI primitives from Shadcn.
--   `src/modules/`: Feature-based modules, each containing its own UI, components, and logic (e.g., `home`, `projects`).
--   `src/trpc/`: tRPC server setup, routers, and client configuration.
--   `src/lib/`: Utility functions and shared library code.
--   `prisma/`: Prisma schema definition ([`schema.prisma`](prisma/schema.prisma)), migrations, and seed scripts.
--   `public/`: Static assets like images and SVGs.
+    Visit [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## Contributing
+## 📁 Project Structure
 
-Contributions are welcome! Please follow these steps to contribute:
+```
+blaze/
+├─ src/
+│  ├─ app/              # Next.js App Router routes & layouts
+│  ├─ components/       # Shared UI components (Shadcn/ui)
+│  ├─ modules/          # Feature modules (home, projects, dashboard, etc.)
+│  ├─ trpc/             # tRPC routers, context, and client
+│  └─ lib/              # Utilities and shared logic
+├─ prisma/
+│  └─ schema.prisma     # Prisma schema + migrations
+├─ public/              # Static assets
+└─ package.json         # Scripts and dependencies
+```
 
-1.  Fork the repository.
-2.  Create a new branch (`git checkout -b feature/your-feature-name`).
-3.  Make your changes and commit them (`git commit -m 'Add some feature'`).
-4.  Push to the branch (`git push origin feature/your-feature-name
+---
+
+## 🔧 Scripts
+
+```
+npm run dev          # Start dev server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run type-check   # TypeScript checks
+npx prisma studio    # Prisma DB browser
+```
+
+---
+
+## 🗺️ Architecture Diagram
 
 
-📝 TODOs & Improvements
- Add more code generation templates in sandbox-templates/
- Expand documentation for API endpoints in src/app/api/
- Improve test coverage
- Add more screenshots and usage examples
- Integrate more external tools and repositories
+
+![architecture](https://github.com/user-attachments/assets/affdce86-4659-4b2f-b2a1-fd19718a58b5)
+
+
+---
+
+## 🗒️ Roadmap
+
+- [ ] More code generation templates (`sandbox-templates/`)
+- [ ] Expand API documentation (`src/app/api/`, `src/trpc/`)
+- [ ] Improve test coverage
+- [ ] More screenshots and usage examples
+- [ ] Integrate external tools and repositories
+- [ ] Support multiple AI providers and model selection
+- [ ] Team collaboration and project sharing
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit: `git commit -m "feat: add your feature"`
+4. Push: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+See CONTRIBUTING.md for guidelines.
+
+---
+
+## 📄 License
+
+MIT License — see [LICENSE](LICENSE).
+
+---
+
+## 🙏 Acknowledgments
+
+- Shadcn/ui for elegant UI components
+- Vercel for deployment
+- All open-source contributors
+
+---
+
+<div align="center">
+  <strong>Built with ❤️ by  chenna Keshava Reddy</strong><br/>
+  <a href="#blaze-">⬆️ Back to Top</a>
+</div>
+```
+
+***
