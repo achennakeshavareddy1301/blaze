@@ -15,7 +15,7 @@ Blaze is a modern full-stack app built with Next.js, Shadcn UI, and Prisma. Inst
 
 ## ✨ Features
 
-- 🤖 **AI Code Generator** — Generate production-ready code from prompts
+- 🤖 **AI Code Generator** — Generate production-ready code from promptss
 - 📁 **Project Management** — Create, organize, and edit multiple projects
 - 👀 **Real-Time Code Preview** — Live UI and code updates
 - 🔐 **Authentication & Profiles** — Secure auth and profiles via Clerk
