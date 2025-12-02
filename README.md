@@ -136,8 +136,7 @@ npx prisma studio    # Prisma DB browser
 
 
 
-![architecture](https://github.com/user-attachments/assets/affdce86-4659-4b2f-b2a1-fd19718a58b5)
-
+![architecture<img width="2816" height="1536" alt="Gemini_Generated_Image_6dfxm16dfxm16dfx" src="https://github.com/user-attachments/assets/65679231-d4ee-48ac-a439-18fa09e5ce4a" />)
 
 ---
 
